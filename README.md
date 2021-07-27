@@ -15,11 +15,13 @@ sudo docker run --name graylog --link mongo --link elasticsearch \
     -e GRAYLOG_HTTP_PUBLISH_URI="http://10.13.16.207:9000/" \
     -d graylog/graylog:4.0
     
+```
+
 ##### Somente isso é necessário para enviar mensagens na porta escolhida para o Graylog  
 - -e GRAYLOG_HTTP_PUBLISH_URI="http://10.13.16.207:9000/" \ -> responsavél por publicar nesse ip e nesta porta a api rest e web do graylog 
 - -p 9000:9000 -p 12201:12201 -p 12201:12201/udp -p 514:514 -p 1514:1514 -p 1514:1514/udp -p 5555:5555 -p 5555:5555/udp \ portas udp e tcp que seram usadas 
     
-```
+
     
 - Após a instalação ter sido feita , você precisará enviar mensagens da sua aplicação para o Graylog 
     
