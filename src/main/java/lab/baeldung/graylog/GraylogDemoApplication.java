@@ -1,4 +1,4 @@
-package Lab.baeldung.graylog;
+package lab.baeldung.graylog;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;

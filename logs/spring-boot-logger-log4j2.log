@@ -1,11 +1,9 @@
-2021-07-26 10:30:06,630 INFO o.s.b.StartupInfoLogger [main] Starting SpringBootLoggingApplication using Java 1.8.0_282 on pedro-SDS with PID 6301 (/home/Git/grayLogs-Connection-Spring/target/classes started by pedro in /home/Git/grayLogs-Connection-Spring)
-2021-07-26 10:30:06,643 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
-2021-07-26 10:30:07,264 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2021-07-26 10:30:07,276 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2021-07-26 10:30:07,277 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2021-07-26 10:30:07,277 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.50]
-2021-07-26 10:30:07,336 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2021-07-26 10:30:07,336 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 644 ms
-2021-07-26 10:30:07,549 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2021-07-26 10:30:07,560 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2021-07-26 10:30:07,569 INFO o.s.b.StartupInfoLogger [main] Started SpringBootLoggingApplication in 1.312 seconds (JVM running for 1.878)
+2021-07-27 09:23:13,740 INFO o.s.b.StartupInfoLogger [main] Starting SpringBootLoggingApplication using Java 1.8.0_282 on pedro-SDS with PID 27656 (/home/Git/demo/target/classes started by pedro in /home/Git/demo)
+2021-07-27 09:23:13,746 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v2.4.9, Spring v5.3.9
+2021-07-27 09:23:13,747 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-07-27 09:23:14,327 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-07-27 09:23:14,375 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 573 ms
+2021-07-27 09:23:14,607 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-27 09:23:14,614 INFO o.s.b.StartupInfoLogger [main] Started SpringBootLoggingApplication in 1.174 seconds (JVM running for 1.696)
+2021-07-27 09:23:18,604 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-07-27 09:23:18,605 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms

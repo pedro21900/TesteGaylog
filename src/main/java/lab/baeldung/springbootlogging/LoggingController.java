@@ -1,4 +1,4 @@
-package Lab.baeldung.springbootlogging;
+package lab.baeldung.springbootlogging;
 
 import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;

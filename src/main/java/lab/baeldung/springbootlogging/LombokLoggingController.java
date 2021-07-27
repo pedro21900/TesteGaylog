@@ -1,4 +1,4 @@
-package Lab.baeldung.springbootlogging;
+package lab.baeldung.springbootlogging;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

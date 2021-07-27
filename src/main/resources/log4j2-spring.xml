@@ -1,46 +1,29 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
-
+<Configuration status="OFF" packages="org.graylog2.log4j2">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss:SSS} - %-5level  - %pid - %t - %c{1.}:%L - %m%n</Property>
+    </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout
-                    pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-
-        <RollingFile name="RollingFile"
-                     fileName="./logs/spring-boot-logger-log4j2.log"
-                     filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
-            <PatternLayout>
-                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
-            </PatternLayout>
-            <Policies>
-                <!-- rollover on startup, daily and when the file reaches
-                    10 MegaBytes -->
-                <OnStartupTriggeringPolicy />
-                <SizeBasedTriggeringPolicy
-                        size="10 MB" />
-                <TimeBasedTriggeringPolicy />
-            </Policies>
-        </RollingFile>
-
-        <Syslog name="Syslog" format="RFC5424" host="localhost" port="514"
-                protocol="UDP" appName="baeldung" facility="LOCAL0" />
-
+        <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="appserver01.example.com">
+            <PatternLayout pattern="%logger{36} - %msg%n"/>
+            <Filters>
+                <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
+            </Filters>
+            &lt;!&ndash; Additional fields &ndash;&gt;
+            <KeyValuePair key="foo" value="bar"/>
+            <KeyValuePair key="jvm" value="${java:vm}"/>
+        </GELF>
     </Appenders>
-
     <Loggers>
-
-        <!-- LOG everything at INFO level -->
         <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingFile" />
-            <AppenderRef ref="Syslog" />
+            <AppenderRef ref="gelfAppender"/>
+            <AppenderRef ref="Console"/>
         </Root>
-
-        <!-- LOG "com.baeldung*" at TRACE level -->
-        <Logger name="Lab.baeldung" level="trace"></Logger>
-        <logger name="org.springframework" level="INFO" />
-        <logger name="Lab.baeldung" level="INFO" />
     </Loggers>
-
-</Configuration>
+</Configuration>-->
