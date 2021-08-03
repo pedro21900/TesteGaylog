@@ -28,7 +28,7 @@ Somente isso é necessário para enviar mensagens na descrita abaixo :
 1. -e GRAYLOG_HTTP_PUBLISH_URI="http://10.13.16.207:9000/" \ -> responsavél por publicar nesse ip e nesta porta a api rest e web do graylog 
 2. -p 9000:9000 -p 12201:12201 -p 12201:12201/udp -p 514:514 -p 1514:1514 -p 1514:1514/udp -p 5555:5555 -p 5555:5555/udp \ portas udp e tcp que seram usadas o Graylog usa por padrão a porta 12201 oara se comunicar com a aplicação.  
     
-Após tudo instalado , a aplicação tem algumas formas se comunicar com o graylog , uma delas é o GELF ,através de:
+#### Passo 2 : Após tudo instalado , a aplicação tem algumas formas se comunicar com o graylog , uma delas é o GELF ,através de:
 
 - Log4j2 que é a nova versão do Log4j (Oficial).
 - Lockback (Terceiros).
@@ -72,7 +72,7 @@ Com isso temos apenas que escolher qual dependência usar:
 
 
 
-### 1. Logback ( Terceiros )
+##### Passo : 2.0. Logback ( Terceiros )
     
     crie um arquivo no  /src/main/resources/logback.xml
     
@@ -90,9 +90,9 @@ Com isso temos apenas que escolher qual dependência usar:
         </encoder>
     </appender>
 
-    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
-        <graylogHost><IP_SERVER_GRAYLOG></graylogHost>
-        <graylogPort><PORT_GRAYLOG></graylogPort>
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender" protocol="UDP">
+        <graylogHost>10.13.16.207</graylogHost>
+        <graylogPort>12201</graylogPort>
     </appender>
 
     <!-- Console output log level -->
@@ -102,7 +102,7 @@ Com isso temos apenas que escolher qual dependência usar:
     </root>
 </configuration>
 ```
-### 2. Log4j2 (Oficial)
+##### Passo : 2.1. Log4j2 (Oficial)
     
     crie um arquivo no  /src/main/resources/log4j2-spring.xml
     
@@ -119,10 +119,10 @@ Com isso temos apenas que escolher qual dependência usar:
         </Console>
         <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="CORVO" protocol="UDP">
             <PatternLayout pattern="%logger{36} - %msg%n"/>
-            <Filters>
-                <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
-            </Filters>
+                <Filters>
+                    <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
+                    <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
+                </Filters>
             <KeyValuePair key="foo" value="bar"/>
             <KeyValuePair key="jvm" value="${java:vm}"/>
         </GELF>
@@ -136,8 +136,33 @@ Com isso temos apenas que escolher qual dependência usar:
 </Configuration>
 ```    
 
-Escolhida a dependência e o arquivo implementado,  digite **mvn clean package** e excute a aplicação , feito isto será necessário a configuração no GayLog
+#### Passo 3 : Escolhida a dependência e o arquivo implementado,  digite **mvn clean package** e excute a aplicação , feito isto será necessário a configuração no GayLog como mostrado abaixo :
 
-<img src=https://github.com/pedro21900/TesteGaylog/tree/main/src/main/resources/Peek%2003-08-2021%2011-54.gif>
+#### Passo 4 
 
+![Alt text](https://github.com/pedro21900/TesteGaylog/blob/main/src/main/resources/Peek%2003-08-2021%2011-54.gif?raw=true "Optional title")
 
+Usamos o UDP mas,para usar o TCP deverá ser alterado no arquivo de log. 
+
+1 Logback 
+
+```xml
+<appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender" protocol="UDP">
+    <graylogHost>10.13.16.207</graylogHost>
+    <graylogPort>12201</graylogPort>
+</appender>
+```
+    
+2. Log4j2
+
+```xml
+<GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="CORVO" protocol="UDP">
+    <PatternLayout pattern="%logger{36} - %msg%n"/>
+    <Filters>
+        <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
+    </Filters>
+    <KeyValuePair key="foo" value="bar"/>
+    <KeyValuePair key="jvm" value="${java:vm}"/>
+</GELF>
+```
