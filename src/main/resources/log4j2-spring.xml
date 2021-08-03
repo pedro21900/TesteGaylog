@@ -2,20 +2,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="OFF" packages="org.graylog2.log4j2">
     <Properties>
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss:SSS} - %-5level  - %pid - %t - %c{1.}:%L - %m%n</Property>
+        <Property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss:SSS}{GMT-3}] - [%highlight{%-5level}{ERROR=Bright RED, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White} - [%pid] - %t] - %c{1.}:%L - %m%n</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="appserver01.example.com">
+        <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="CORVO" protocol="UDP">
             <PatternLayout pattern="%logger{36} - %msg%n"/>
             <Filters>
                 <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
                 <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
             </Filters>
-            &lt;!&ndash; Additional fields &ndash;&gt;
             <KeyValuePair key="foo" value="bar"/>
             <KeyValuePair key="jvm" value="${java:vm}"/>
         </GELF>
@@ -26,4 +25,5 @@
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
-</Configuration>-->
+</Configuration>
+-->
