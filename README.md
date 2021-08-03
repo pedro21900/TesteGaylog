@@ -138,6 +138,6 @@ Com isso temos apenas que escolher qual dependência usar:
 
 Escolhida a dependência e o arquivo implementado,  digite **mvn clean package** e excute a aplicação , feito isto será necessário a configuração no GayLog
 
-<img src=https://github.com/pedro21900/TesteGaylog/tree/main/src/main/resources/Peek%2003-08-2021%2011-54.gif width="30">
+<img src=https://github.com/pedro21900/TesteGaylog/tree/main/src/main/resources/Peek%2003-08-2021%2011-54.gif>
 
 
