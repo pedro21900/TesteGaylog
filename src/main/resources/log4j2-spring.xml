@@ -1,4 +1,3 @@
-<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="OFF" packages="org.graylog2.log4j2">
     <Properties>
@@ -9,7 +8,7 @@
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="CORVO" protocol="UDP">
+        <GELF name="gelfAppender" server="10.13.16.207" port="12201" hostName="TesteGraylog" protocol="UDP">
             <PatternLayout pattern="%logger{36} - %msg%n"/>
             <Filters>
                 <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
@@ -26,4 +25,3 @@
         </Root>
     </Loggers>
 </Configuration>
--->
